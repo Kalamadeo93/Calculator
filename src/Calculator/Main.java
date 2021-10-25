@@ -1,6 +1,5 @@
 package Calculator;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -10,19 +9,14 @@ public class Main {
         int x = Integer.parseInt(sc.next());
         String l = sc.next();
         int y = Integer.parseInt(sc.next());
-        if (Objects.equals(l, "+")) {
-            System.out.println(x + y);
-        }
-        if (Objects.equals(l, "-")) {
-            System.out.println(x - y);
-        }
-        if (Objects.equals(l, "*")) {
-            System.out.println(x * y);
-        }
-        if (Objects.equals(l, "/")) {
-            System.out.println(x / y);
+        switch (l) {
+            case ("+") -> System.out.println(x + y);
+            case ("-") -> System.out.println(x - y);
+            case ("*") -> System.out.println(x * y);
+            case ("/") -> System.out.println(x / y);
         }
 
 
     }
 }
+
