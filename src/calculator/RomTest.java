@@ -8,7 +8,7 @@ public class RomTest {
     static int last = 2000;
     static int[] numbers =     {   1,   4,   5,    9,  10,  50, 100, 500, 1000 };
     static String[] letters =  { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-    public static String main (String[] args){
+    public static void main(String[] args){
 
         //ввод числа
         System.out.println("Enter your Roman Numerals or Integer number:");
@@ -24,47 +24,57 @@ public class RomTest {
             }
         //объявление числововой переменной
         int n = Integer.parseInt(a);
-        if(n >= 1)
-        {
-            if(n == 1)
-            {
-                return "I";
+        if (n >= 1) {
+            if (n == 1) {
+                a = "I";
+                System.out.println(a);
             }
-            /*else if (n == 2)
+            else if (n == 2)
             {
-                return one + one;
+                a = "II";
+                System.out.println(a);
             }
             else if (n == 3)
             {
-                return one + one + one;
+                a = "III";
+                System.out.println(a);
             }
             else if (n==4)
             {
-                return one + five;
+                a = "IV";
+                System.out.println(a);
             }
             else if (n == 5)
             {
-                return five;
+                a = "V";
+                System.out.println(a);
             }
             else if (n == 6)
             {
-                return five + one;
+                a = "VI";
+                System.out.println(a);
             }
             else if (n == 7)
             {
-                return five + one + one;
+                a = "VII";
+                System.out.println(a);
             }
             else if (n == 8)
             {
-                return five + one + one + one;
+                a = "VIII";
+                System.out.println(a);
             }
             else if (n == 9)
             {
-                return one + ten;
-            }*/
+                a = "IX";
+                System.out.println(a);
+            }
+            else if (n == 10) {
+                a = "X";
+                System.out.println(a);
+            }
 
         }
-        return "";
 
 
         //flag = true значит будем иметь дело с римскими обозначением
