@@ -57,6 +57,18 @@ public class RomanConvert {
             }
         }
 
+       /* switch (res) {
+            case 1 -> resultValueRoman = "I";
+            case 2 -> resultValueRoman = "II";
+            case 3 -> resultValueRoman = "III";
+            case 4 -> resultValueRoman = "IV";
+            case 5 -> resultValueRoman = "V";
+            case 6 -> resultValueRoman = "VI";
+            case 7 -> resultValueRoman = "VII";
+            case 8 -> resultValueRoman = "VIII";
+            case 9 -> resultValueRoman = "IX";
+            case 10 -> resultValueRoman = "X";
+        }*/
 
     }
 }
