@@ -7,15 +7,14 @@ public class Main {
 
 
     public static void main(String[] args) {
-        int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         String[] letters = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-        String firstValueRoman = null;
-        String secondValueRoman = null;
+        String firstValueRoman;
+        String secondValueRoman;
         String resultValueRoman = "";
         int firstValueArabic = 0;
         int secondValueArabic = 0;
         int res = 0;
-        String sign = "";
+        String sign;
 
         Scanner sc = new Scanner(System.in);
 
