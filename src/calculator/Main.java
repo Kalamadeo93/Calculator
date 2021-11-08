@@ -1,6 +1,6 @@
 package calculator;
 
-import java.util.Objects;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -15,30 +15,91 @@ public class Main {
         int firstValueArabic = 0;
         int secondValueArabic = 0;
         int res = 0;
-        int res1 = 0;
-        boolean flag = false;
         String sign = "";
 
         Scanner sc = new Scanner(System.in);
-        /*String all = sc.nextLine();
-        String[] var1 = all.split(" ");
-        String sign = var1[1];*/
+
         if(sc.hasNextInt()) {
-            firstValueArabic = sc.nextInt();
-            sign = sc.next();
-            secondValueArabic = sc.nextInt();
-            switch (sign) {
-            case ("+") -> res = firstValueArabic + secondValueArabic;
-            case ("-") -> res = firstValueArabic - secondValueArabic;
-            case ("*") -> res = firstValueArabic * secondValueArabic;
-            case ("/") -> res = firstValueArabic / secondValueArabic;
+            try{
+                firstValueArabic = sc.nextInt();
+            }catch (InputMismatchException e){
+                System.err.println("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                System.exit(0);
             }
+            sign = sc.next();
+            try{
+                secondValueArabic = sc.nextInt();
+            }catch (InputMismatchException e){
+                System.err.println("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                System.exit(0);
+            }
+            if (firstValueArabic < 0 | firstValueArabic > 10){
+                try{
+                    throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                }catch (Exception e){
+                    System.err.println(e.getMessage());
+                    System.exit(0);
+                }
+            }
+
+            if (secondValueArabic < 0 | secondValueArabic > 10){
+                try{
+                    throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                }catch (Exception e){
+                    System.err.println(e.getMessage());
+                    System.exit(0);
+                }
+            }
+
+            switch (sign) {
+                case ("+") :
+                    res = firstValueArabic + secondValueArabic;
+                    break;
+                case ("-") :
+                    res = firstValueArabic - secondValueArabic;
+                    break;
+                case ("*") :
+                    res = firstValueArabic * secondValueArabic;
+                    break;
+                case ("/") :
+                    try {
+                        res = firstValueArabic / secondValueArabic;
+                    }catch (ArithmeticException e) {
+                        System.err.println("Division by zero!");
+                        System.exit(0);
+                    }
+                    break;
+                    }
             System.out.println(res);
         }
         else{
+            boolean flag = false;
             firstValueRoman = sc.next();
+            for(String s : letters){
+                flag = firstValueRoman == s;
+            }
+            if(flag) {
+                try {
+                    throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                    System.exit(0);
+                }
+            }
             sign = sc.next();
             secondValueRoman = sc.next();
+            for(String s : letters){
+                flag = secondValueRoman == s;
+            }
+            if(flag) {
+                try {
+                    throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                    System.exit(0);
+                }
+            }
+
             switch (firstValueRoman) {
                 case "I" -> firstValueArabic = 1;
                 case "II" -> firstValueArabic = 2;
@@ -50,13 +111,14 @@ public class Main {
                 case "VIII" -> firstValueArabic = 8;
                 case "IX" -> firstValueArabic = 9;
                 case "X" -> firstValueArabic = 10;
-                /*default -> {
+                default -> {
                     try {
-                        throw new CalculatorException();
-                    } catch (CalculatorException e) {
-                        e.getMessage("Invalid enter", e);
+                        throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                        System.exit(0);
                     }
-                }*/
+                }
             }
             switch (secondValueRoman) {
                 case "I" -> secondValueArabic = 1;
@@ -69,26 +131,30 @@ public class Main {
                 case "VIII" -> secondValueArabic = 8;
                 case "IX" -> secondValueArabic = 9;
                 case "X" -> secondValueArabic = 10;
-                /*default -> {
+                default -> {
                     try {
-                        throw new CalculatorException();
-                    } catch (CalculatorException e) {
-                        e.getMessage("Invalid enter", e);
+                        throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                        System.exit(0);
                     }
-                }*/
+                }
             }
             switch (sign) {
                 case ("+") -> res = firstValueArabic + secondValueArabic;
                 case ("-") -> res = firstValueArabic - secondValueArabic;
                 case ("*") -> res = firstValueArabic * secondValueArabic;
                 case ("/") -> res = firstValueArabic / secondValueArabic;
+
             }
-            try {
-                if(res < 0){
-                    throw new Exception("Result < 0");
+            if(res < 1){
+                try{
+                    throw new Exception("Result is incorrect! Can't be negative!");
+                }catch (Exception e){
+                    System.err.println(e.getMessage());
+                    System.exit(0);
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+
             }
            /*M 1000   CM 900   D 500    CD 400  C 100  XC 90
              X 10     IX   9   V 5      IV 4    L 50   XL 40
@@ -149,13 +215,7 @@ public class Main {
 
             System.out.println(resultValueRoman);
         }
-        //int i = 0; i < letters.length; i++
+
 
     }
-   /* public boolean checkRomanOrArabic(String[] var1){
-        boolean flag;
-        int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        String[] letters = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-
-    }*/
 }
