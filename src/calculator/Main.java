@@ -1,13 +1,13 @@
 package calculator;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        String[] letters = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        String[] letters = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         String firstValueRoman;
         String secondValueRoman;
         String resultValueRoman = "";
@@ -15,69 +15,97 @@ public class Main {
         int secondValueArabic = 0;
         int res = 0;
         String sign;
+        String[] all;
 
         Scanner sc = new Scanner(System.in);
-
-        if(sc.hasNextInt()) {
-            try{
-                firstValueArabic = sc.nextInt();
-            }catch (InputMismatchException e){
-                System.err.println("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+        all = sc.nextLine().split(" ");
+        if (all.length < 2) {
+            try {
+                throw new Exception("A String is not a mathematical operation!");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
                 System.exit(0);
             }
-            sign = sc.next();
-            try{
-                secondValueArabic = sc.nextInt();
-            }catch (InputMismatchException e){
-                System.err.println("Invalid enter! Use integer number's from 0 to 10 or from I to X");
+        }
+        if (all.length > 3) {
+            try {
+                throw new Exception("Need two operands and one operator!");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
                 System.exit(0);
             }
-            if (firstValueArabic < 0 | firstValueArabic > 10){
-                try{
-                    throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
-                }catch (Exception e){
-                    System.err.println(e.getMessage());
-                    System.exit(0);
+        }
+        String a = all[0];
+        sign = all[1];
+        String b = all[2];
+        try {
+            for(String s : letters){
+                boolean flag = Objects.equals(s, a);
+                boolean flag1 = Objects.equals(s, b);
+                if (flag ^ flag1) {
+                    throw new Exception("Different number systems!");
                 }
             }
-
-            if (secondValueArabic < 0 | secondValueArabic > 10){
-                try{
-                    throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
-                }catch (Exception e){
-                    System.err.println(e.getMessage());
-                    System.exit(0);
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        try {
+            firstValueArabic = Integer.parseInt(a);
+            secondValueArabic = Integer.parseInt(b);
+            for(int i : numbers){
+                boolean flag = Objects.equals(firstValueArabic, i);
+                boolean flag1 = Objects.equals(secondValueArabic, i);
+                if (flag ^ flag1) {
+                    throw new Exception("Different number systems!");
                 }
             }
-
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        if (firstValueArabic < 0 | firstValueArabic > 10 | secondValueArabic < 0 | secondValueArabic > 10) {
+            try {
+                throw new Exception("Incorrect input! Use Arabic number from 0 to 10!");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        } else if (firstValueArabic > 0 & firstValueArabic < 10 | secondValueArabic > 0 & secondValueArabic < 10) {
             switch (sign) {
-                case ("+") :
+                case ("+"):
                     res = firstValueArabic + secondValueArabic;
                     break;
-                case ("-") :
+                case ("-"):
                     res = firstValueArabic - secondValueArabic;
                     break;
-                case ("*") :
+                case ("*"):
                     res = firstValueArabic * secondValueArabic;
                     break;
-                case ("/") :
+                case ("/"):
                     try {
                         res = firstValueArabic / secondValueArabic;
-                    }catch (ArithmeticException e) {
+                    } catch (ArithmeticException e) {
                         System.err.println("Division by zero!");
                         System.exit(0);
                     }
                     break;
+                default:
+                    try {
+                        throw new Exception("Incorrect sign!");
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                        System.exit(0);
                     }
+            }
             System.out.println(res);
-        }
-        else{
+        }else {
+
             boolean flag = false;
-            firstValueRoman = sc.next();
-            for(String s : letters){
+            firstValueRoman = a;
+            for (String s : letters) {
                 flag = firstValueRoman == s;
             }
-            if(flag) {
+            if (flag) {
                 try {
                     throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
                 } catch (Exception e) {
@@ -85,12 +113,11 @@ public class Main {
                     System.exit(0);
                 }
             }
-            sign = sc.next();
-            secondValueRoman = sc.next();
-            for(String s : letters){
+            secondValueRoman = b;
+            for (String s : letters) {
                 flag = secondValueRoman == s;
             }
-            if(flag) {
+            if (flag) {
                 try {
                     throw new Exception("Invalid enter! Use integer number's from 0 to 10 or from I to X");
                 } catch (Exception e) {
@@ -144,77 +171,84 @@ public class Main {
                 case ("-") -> res = firstValueArabic - secondValueArabic;
                 case ("*") -> res = firstValueArabic * secondValueArabic;
                 case ("/") -> res = firstValueArabic / secondValueArabic;
+                default -> {
+                    try {
+                        throw new Exception("Invalid sign!");
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                        System.exit(0);
+                    }
+                }
 
             }
-            if(res < 1){
-                try{
+            if (res < 1) {
+                try {
                     throw new Exception("Result is incorrect! Can't be negative!");
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.err.println(e.getMessage());
                     System.exit(0);
                 }
 
             }
-           /*M 1000   CM 900   D 500    CD 400  C 100  XC 90
-             X 10     IX   9   V 5      IV 4    L 50   XL 40
-             I 1  */
+               /*M 1000   CM 900   D 500    CD 400  C 100  XC 90
+                 X 10     IX   9   V 5      IV 4    L 50   XL 40
+                 I 1  */
 
             while (res >= 1000) {
-                        resultValueRoman += "M";
-                        res -= 1000;
-                    }
+                resultValueRoman += "M";
+                res -= 1000;
+            }
             while (res >= 900) {
-                        resultValueRoman += "CM";
-                        res -= 900;
-                    }
+                resultValueRoman += "CM";
+                res -= 900;
+            }
             while (res >= 500) {
-                        resultValueRoman += "D";
-                        res -= 500;
-                    }
+                resultValueRoman += "D";
+                res -= 500;
+            }
             while (res >= 400) {
-                        resultValueRoman += "CM";
-                        res -= 400;
-                    }
+                resultValueRoman += "CM";
+                res -= 400;
+            }
             while (res >= 100) {
-                        resultValueRoman += "C";
-                        res -= 100;
-                    }
+                resultValueRoman += "C";
+                res -= 100;
+            }
             while (res >= 90) {
-                        resultValueRoman += "XC";
-                        res -= 90;
-                    }
+                resultValueRoman += "XC";
+                res -= 90;
+            }
             while (res >= 50) {
-                        resultValueRoman += "L";
-                        res -= 50;
-                    }
+                resultValueRoman += "L";
+                res -= 50;
+            }
             while (res >= 40) {
-                        resultValueRoman += "XL";
-                        res -= 40;
-                    }
+                resultValueRoman += "XL";
+                res -= 40;
+            }
             while (res >= 10) {
-                        resultValueRoman += "X";
-                        res -= 10;
-                    }
+                resultValueRoman += "X";
+                res -= 10;
+            }
             while (res >= 9) {
-                        resultValueRoman += "IX";
-                        res -= 9;
-                    }
+                resultValueRoman += "IX";
+                res -= 9;
+            }
             while (res >= 5) {
-                        resultValueRoman += "V";
-                        res -= 5;
-                    }
+                resultValueRoman += "V";
+                res -= 5;
+            }
             while (res >= 4) {
-                        resultValueRoman += "IV";
-                        res -= 4;
-                    }
+                resultValueRoman += "IV";
+                res -= 4;
+            }
             while (res >= 1) {
-                        resultValueRoman += "I";
-                        res -= 1;
-                    }
+                resultValueRoman += "I";
+                res -= 1;
+            }
 
             System.out.println(resultValueRoman);
         }
-
 
     }
 }
