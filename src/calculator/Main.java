@@ -6,8 +6,16 @@ public class Main {
 
 
     public static void main(String[] args) {
+        InputProcessing ip = new InputProcessing();
+        ip.setUserInput();
+        ip.setSign();
+        ip.checkInputFromUser(ip.getUserInput());
+        System.out.println();
+       /* List numbers1 = new ArrayList();
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         String[] letters = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+        numbers1.addAll(Arrays.asList(numbers));
+        numbers1.addAll(Arrays.asList(letters));
         String firstValueRoman;
         String secondValueRoman;
         String resultValueRoman = "";
@@ -19,27 +27,13 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         all = sc.nextLine().split(" ");
-        if (all.length < 2) {
-            try {
-                throw new Exception("A String is not a mathematical operation!");
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
-                System.exit(0);
-            }
-        }
-        if (all.length > 3) {
-            try {
-                throw new Exception("Need two operands and one operator!");
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
-                System.exit(0);
-            }
-        }
         String a = all[0];
         sign = all[1];
-        String b = all[2];
+        String b = all[2];*/
+ /*
+
         try {
-            for(String s : letters){
+               for(String s : letters){
                 boolean flag = Objects.equals(s, a);
                 boolean flag1 = Objects.equals(s, b);
                 if (flag ^ flag1) {
@@ -64,13 +58,13 @@ public class Main {
             System.err.println(e.getMessage());
             System.exit(0);
         }
-        if (firstValueArabic < 0 | firstValueArabic > 10 | secondValueArabic < 0 | secondValueArabic > 10) {
+        if (firstValueArabic < 0 || firstValueArabic > 10 || secondValueArabic < 0 || secondValueArabic > 10) {
             try {
                 throw new Exception("Incorrect input! Use Arabic number from 0 to 10!");
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-        } else if (firstValueArabic > 0 & firstValueArabic < 10 | secondValueArabic > 0 & secondValueArabic < 10) {
+        } else if (firstValueArabic > 0 && firstValueArabic < 10 && secondValueArabic > 0 && secondValueArabic < 10) {
             switch (sign) {
                 case ("+"):
                     res = firstValueArabic + secondValueArabic;
@@ -194,7 +188,7 @@ public class Main {
                  X 10     IX   9   V 5      IV 4    L 50   XL 40
                  I 1  */
 
-            while (res >= 1000) {
+ /*           while (res >= 1000) {
                 resultValueRoman += "M";
                 res -= 1000;
             }
@@ -248,7 +242,7 @@ public class Main {
             }
 
             System.out.println(resultValueRoman);
-        }
+        }*/
 
     }
 }
