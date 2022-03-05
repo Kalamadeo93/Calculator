@@ -20,15 +20,11 @@ public class InputProcessing {
     public void setUserInput() {
         userInput = sc.nextLine().split(" ");
     }
-
     public String[] getUserInput() {
         return userInput;
     }
     public void setSign(){
         sign = userInput[1];
-    }
-    public String getSign(){
-        return sign;
     }
 
     public void checkInputFromUser(String[] userInput){
@@ -51,11 +47,7 @@ public class InputProcessing {
         }
             if (checkFirstVar && checkSecondVar) {
                 ar.calculate(firstArabicValue, sign, secondArabicValue);
-            }
-            else if (!checkFirstVar && !checkSecondVar) {
-                System.out.println("::dsfg");
-
-            } else {
+            } else if (checkFirstVar ^ checkSecondVar) {
                 try {
                     throw new Exception("Invalid input!");
                 } catch (Exception e) {
@@ -79,9 +71,7 @@ public class InputProcessing {
                 firstRomanValue = userInput[0];
                 secondRomanValue = userInput[2];
                 rr.RomRes(firstRomanValue, sign, secondRomanValue);
-            }else if(!checkFirstVar && !checkSecondVar) {
-                System.out.println("fffff");
-            } else{
+            } else if (checkFirstVar ^ checkSecondVar){
                 try {
                     throw new Exception("Invalid input!");
                 }catch (Exception e){
@@ -92,69 +82,4 @@ public class InputProcessing {
 
         }
 
-    }
-    /*public ArrayList ArabicInput(int x, int y) {
-        ArrayList<Integer> arabicVar = new ArrayList<>();
-        arabicVar.set(0, x);
-        arabicVar.set(1, y);
-        return arabicVar;
-    }*/
-        /*try {
-            firstValueArabic = Integer.parseInt(tempVariable1);
-            secondValueArabic = Integer.parseInt(tempVariable2);
-        }catch (Exception e) {
-            boolean flag = false;
-            for (String s : letters) {
-                flag = Objects.equals(tempVariable1, s);
-                if (flag) {
-                    firstValueRoman = tempVariable1;
-                    romanVar.add(firstValueRoman);
-                }
-            }
-                if (romanVar.size() != 1){
-                    try {
-                        throw new Exception("Out of range, use number's from 0 to 10 or from I to X");
-                    } catch (Exception ex) {
-                        System.err.println(ex.getMessage());
-                        System.exit(0);
-                    }
-                }
-            for (String s : letters) {
-                flag = Objects.equals(tempVariable2, s);
-                if (flag) {
-                    secondValueRoman = tempVariable2;
-                    romanVar.add(secondValueRoman);
-                }
-            }
-            if (romanVar.size() != 2){
-                try {
-                    throw new Exception("Out of range, use number's from 0 to 10 or from I to X");
-                } catch (Exception ex) {
-                    System.err.println(ex.getMessage());
-                    System.exit(0);
-                }
-            }
-        }
-        for(int i : numbers) {
-            if(Objects.equals(firstValueArabic, i)){
-                succParse1 = true;
-            }
-            if(Objects.equals(secondValueArabic, i)){
-                succParse2 = true;
-            }
-        }
-        if (succParse1 && succParse2){
-            arabicVar.add(firstValueArabic);
-            arabicVar.add(secondValueArabic);
-        }
-        return new ArrayList<>(arabicVar, romanVar);*/
-
-        /*try {
-            throw new Exception("Out of range, use number's from 0 to 10");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            System.exit(0);
-        }*/
-        //System.out.println(arabicVar + "" + romanVar)
-
-
+}
