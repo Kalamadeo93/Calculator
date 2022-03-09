@@ -4,8 +4,6 @@ import java.util.*;
 public class InputProcessing {
     public String sign;
     String[] userInput;
-    int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    String[] letters = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
     String [] allValues = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X","1","2", "3", "4", "5", "6", "7", "8", "9", "10"};
     //"1","2", "3", "4", "5", "6", "7", "8", "9", "10",
     int firstArabicValue;
